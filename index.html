@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sonrisa Uruguaya</title>
+    <style>
+      :root {
+        --bg: #f4f8f7;
+        --panel: #ffffff;
+        --primary: #3f7d73;
+        --primary-dark: #2d5f59;
+        --accent: #dfeee9;
+        --text: #23312f;
+        --muted: #5d6f6c;
+        --border: #dfe9e7;
+        --warning: #f6efe1;
+        --warning-text: #7a5a18;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(180deg, #f7fbfa 0%, #eef5f4 100%);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      .container {
+        width: min(1100px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      header {
+        background: linear-gradient(135deg, #edf8f5 0%, #dfeee9 100%);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 0;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .logo {
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        background: var(--primary);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.2rem;
+        box-shadow: 0 8px 20px rgba(63, 125, 115, 0.2);
+      }
+
+      .brand h1 {
+        margin: 0;
+        font-size: clamp(1.6rem, 3vw, 2.2rem);
+        color: var(--primary-dark);
+      }
+
+      .tag {
+        background: rgba(63, 125, 115, 0.08);
+        border: 1px solid rgba(63, 125, 115, 0.15);
+        color: var(--primary-dark);
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-size: 0.82rem;
+        font-weight: 600;
+      }
+
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 22px;
+        padding: 14px 22px;
+        border: none;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 700;
+        text-decoration: none;
+        box-shadow: 0 12px 20px rgba(63, 125, 115, 0.18);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .cta:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 16px 24px rgba(63, 125, 115, 0.24);
+      }
+
+      main {
+        padding: 48px 0 60px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1.3fr 0.7fr;
+        gap: 28px;
+        align-items: center;
+      }
+
+      .hero-card,
+      .info-card,
+      .service-card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        box-shadow: 0 12px 24px rgba(35, 49, 47, 0.04);
+      }
+
+      .hero-card {
+        padding: 36px;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        background: var(--accent);
+        color: var(--primary-dark);
+        border-radius: 999px;
+        padding: 7px 12px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        margin: 18px 0 14px;
+        font-size: clamp(2rem, 4vw, 3rem);
+        line-height: 1.1;
+        color: var(--text);
+      }
+
+      .hero-card p {
+        margin: 0;
+        font-size: 1.05rem;
+        color: var(--muted);
+      }
+
+      .hero-visual {
+        min-height: 280px;
+        background: linear-gradient(180deg, #edf8f5 0%, #dfeee9 100%);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .smile {
+        position: relative;
+        width: 210px;
+        height: 120px;
+        border: 8px solid var(--primary);
+        border-top: 0;
+        border-radius: 0 0 160px 160px;
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .smile::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 0 0 150px 150px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
+      }
+
+      .section {
+        margin-top: 42px;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 18px;
+      }
+
+      .section-header h3 {
+        margin: 0;
+        font-size: clamp(1.5rem, 2vw, 2.1rem);
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 20px;
+      }
+
+      .service-card {
+        padding: 24px 20px;
+      }
+
+      .service-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 14px;
+        background: var(--accent);
+        color: var(--primary-dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 18px;
+      }
+
+      .service-card h4 {
+        margin: 0 0 8px;
+        font-size: 1.15rem;
+      }
+
+      .service-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.98rem;
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 24px;
+        margin-top: 18px;
+      }
+
+      .info-card {
+        padding: 28px 24px;
+      }
+
+      .info-card h4 {
+        margin-top: 0;
+        margin-bottom: 12px;
+        font-size: 1.25rem;
+      }
+
+      .hours {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 10px;
+      }
+
+      .hours li {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .hours li:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .hours span:first-child {
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      .hours span:last-child {
+        color: var(--muted);
+      }
+
+      .notice {
+        background: var(--warning);
+        border: 1px solid #e8dcc1;
+        border-radius: 16px;
+        color: var(--warning-text);
+        padding: 18px 20px;
+      }
+
+      .notice strong {
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      footer {
+        background: var(--primary-dark);
+        color: rgba(255,255,255,0.9);
+        padding: 24px 0;
+        margin-top: 54px;
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .footer-content p {
+        margin: 0;
+      }
+
+      @media (max-width: 860px) {
+        .hero,
+        .services-grid,
+        .info-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .topbar,
+        .footer-content,
+        .section-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container topbar">
+        <div class="brand">
+          <div class="logo">S</div>
+          <h1>Sonrisa Uruguaya</h1>
+        </div>
+        <div class="tag">Montevideo • Atención odontológica</div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero section">
+        <div class="hero-card">
+          <span class="eyebrow">Clínica dental</span>
+          <h2>Sonrisa saludable, confianza y cuidado.</h2>
+          <p>
+            En Sonrisa Uruguaya cuidamos tu salud bucal con atención profesional,
+            moderna y cercana, en Montevideo.
+          </p>
+          <a href="chat.html" class="cta">Ir al chat</a>
+        </div>
+
+        <div class="hero-card hero-visual" aria-label="Ilustración de sonrisa">
+          <div class="smile" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h3>Servicios</h3>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon">✦</div>
+            <h4>Limpieza dental</h4>
+            <p>Profilaxis profesional para mantener una sonrisa sana y brillante.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">☼</div>
+            <h4>Blanqueamiento</h4>
+            <p>Tratamientos para aclarar y embellecer tu sonrisa con seguridad.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">▣</div>
+            <h4>Ortodoncia</h4>
+            <p>Corrección de alineación y funcionalidad con soluciones personalizadas.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">⚑</div>
+            <h4>Atención de urgencias</h4>
+            <p>Asistencia inmediata para situaciones urgentes con atención fuera de horario.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="info-grid">
+          <div class="info-card">
+            <h4>Horario de atención</h4>
+            <ul class="hours">
+              <li><span>Lunes a viernes</span><span>9:00 a 18:00</span></li>
+              <li><span>Sábados</span><span>9:00 a 13:00</span></li>
+            </ul>
+          </div>
+
+          <div class="info-card notice">
+            <strong>Urgencias</strong>
+            Las urgencias se atienden todos los días, incluso fuera de horario,
+            llamando al número de guardia. La clínica no atiende urgencias
+            pediátricas (menores de 12 años): esos casos se derivan al Hospital
+            Pediátrico más cercano.
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-content">
+        <p>© 2026 Sonrisa Uruguaya — Montevideo</p>
+        <p>Tu sonrisa en buenas manos</p>
+      </div>
+    </footer>
+
+    <script>
+    (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="1V_BuINGVg8YWNmAyBptn";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+    </script>
+  </body>
+</html>
